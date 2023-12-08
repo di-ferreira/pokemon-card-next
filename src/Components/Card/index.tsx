@@ -1,4 +1,3 @@
-'use client';
 import { iPokemonResponse } from '@/@types';
 import { GetTypeColor } from '@/utils';
 import React from 'react';
@@ -21,37 +20,32 @@ const ComponentCards: React.FC<iPokecard> = ({ PokeId }) => {
     setPokemon(Pokemon);
   };
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      GetPokemon();
-    }, 2000);
-    return () => clearTimeout(timer);
-
-    // const LoadInfoPokemon = () => {
-    //   GetPokemon();
-    // };
-    // return () => LoadInfoPokemon();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  GetPokemon();
 
   if (!Pokemon) return <PokeLoading />;
   else {
     return (
-      <article className='flex flex-col h-[400px] w-[250px] rounded-2xl card-shadow mx-4 my-4 overflow-hidden relative'>
-        <span
-          style={{
-            backgroundColor: GetTypeColor(Pokemon.types[0].type.name),
-          }}
-          className='rounded-t-[50%] rounded-b-[50%] w-[300px] h-[300px] absolute -z-10 top-[-25%] left-[50%] translate-x-[-50%]'
-        ></span>
-        <PokeImage PokeId={Pokemon.id} />
-        <PokeName name={Pokemon.name} />
-        <PokeNumber number={Pokemon.id} />
+      <a href={`/pokemon/${Pokemon.id}`} className='no-underline'>
+        <article
+          className={`flex flex-col h-[470px] w-64 rounded-2xl card-shadow mx-4 my-4 overflow-hidden relative bg-[${GetTypeColor(
+            Pokemon.types[0].type.name
+          )}]`}
+        >
+          <span
+            style={{
+              backgroundColor: GetTypeColor(Pokemon.types[0].type.name),
+            }}
+            className='rounded-t-[50%] rounded-b-[50%] w-[300px] h-[300px] absolute -z-10 top-[-25%] left-[50%] translate-x-[-50%]'
+          ></span>
+          <PokeImage PokeId={Pokemon.id} />
+          <PokeName name={Pokemon.name} />
+          <PokeNumber number={Pokemon.id} />
 
-        <PokeType types={Pokemon.types} />
+          <PokeType types={Pokemon.types} />
 
-        <PokeStats type={Pokemon.types[0].type.name} stats={Pokemon.stats} />
-      </article>
+          <PokeStats type={Pokemon.types[0].type.name} stats={Pokemon.stats} />
+        </article>
+      </a>
     );
   }
 };

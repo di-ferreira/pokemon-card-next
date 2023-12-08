@@ -1,8 +1,7 @@
-'client';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
-import Logo from '../../public/logo.png';
+import Logo from '../assets/logo.png';
 import './globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -21,7 +20,9 @@ export default function RootLayout({
     <html lang='pt-br'>
       <body className={montserrat.className}>
         <nav className='overflow-hidden w-screen h-[10vh] flex items-end gap-x-[5rem] py-[0.3rem] px-[0.75rem] bg-red-700'>
-          <Image src={Logo} alt='Logo Pokémon' className='w-auto h-full' />
+          <a href='/' className='no-underline w-auto h-full'>
+            <Image src={Logo} alt='Logo Pokémon' className='w-full h-full' />
+          </a>
           <div className='w-full flex items-center'>
             <input
               type='text'
@@ -46,7 +47,6 @@ export default function RootLayout({
             </button>
           </div>
         </nav>
-
         {children}
       </body>
     </html>

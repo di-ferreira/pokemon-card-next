@@ -17,4 +17,9 @@ body {
   .card-shadow {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   }
+
+  .small-caps {
+    font-variant: small-caps;
+  }
 }
+
